@@ -11,6 +11,7 @@ export class Player {
         this.sprite = Greifer.scene.matter.add.sprite(100, 100, 'handopen')
         this.sprite.scale = .5
         this.sprite.setRectangle(100, 100)
+        this.sprite.setDensity(1)
     }
  
     

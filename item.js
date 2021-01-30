@@ -1,4 +1,5 @@
 
+import { Greifer } from "./main.js"
 
 
 export class Item {
@@ -19,6 +20,6 @@ export class Item {
 
     fall() {
 
-        
+
     }
 }
