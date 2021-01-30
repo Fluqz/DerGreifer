@@ -47,7 +47,7 @@ export class Greifer {
 
         this.load.image('handclosed', 'assets/hand-closed.png');
         this.load.image('handopen', 'assets/hand-open.png');
-        this.load.image('test', 'assets/hand-open.png');
+        this.load.image('test', 'assets/kackhaufen.png');
     }
 
     create() {
