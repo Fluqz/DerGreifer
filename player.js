@@ -26,15 +26,28 @@ export class Player {
 
 	move(x, y) {
 		this.sprite.x = x
-
 		this.sprite.y = y
 	}
 
 	close() {
-		this.sprite.setTexture("handclosed")
+        this.sprite.destroy()
+		this.sprite = Greifer.scene.matter.add.sprite(
+			50,
+			50,
+			"handclosed",
+			"handclosed",
+			{ shape: this.shapes["hand-closed"] }
+		)
 	}
 
 	open() {
-		this.sprite.setTexture("handopen")
+        this.sprite.destroy()
+		this.sprite = Greifer.scene.matter.add.sprite(
+			50,
+			50,
+			"handopen",
+			"handopen",
+			{ shape: this.shapes["hand-open"] }
+		)
 	}
 }
