@@ -1,70 +1,77 @@
 
 
 import './node_modules/phaser/dist/phaser-arcade-physics.js'
+import { Player } from './player.js'
 
 
 
-const scene = new Phaser.Scene('game')
+export class Greifer {
 
-const config = {
+    scene
+    config
+    game
+    player 
 
-    type: Phaser.AUTO,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 200 }
+    constructor() {
+
+        this.scene = new Phaser.Scene('game')
+
+        this.config = {
+
+            type: Phaser.AUTO,
+            width: window.innerWidth,
+            height: window.innerHeight,
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: { y: 200 }
+                }
+            },
+            scene: this.scene
         }
-    },
-    scene: scene
+
+        this.game = new Phaser.Game(this.config)
+
+        this.scene.init = this.init
+        this.scene.preload = this.preload
+        this.scene.create = this.create
+        this.scene.update = this.update
+        this.scene.end = this.end
+
+        console.log(this.scene)
+    }
+
+    init() {
+
+    }
+    preload() {
+
+        this.load.image('handclosed', 'assets/hand-closed.png');
+        this.load.image('handopen', 'assets/hand-open.png');
+    }
+
+    create() {
+        this.player = new Player(this)
+    }
+
+    update() {
+
+        if (this.input.activePointer.isDown) {
+
+            this.player.close()
+        }
+        else {
+
+            this.player.open()
+        }
+
+        this.player.move(this.input.activePointer.x, this.input.activePointer.y)
+    }
+
+    end() {
+        
+    }
 }
 
-var game = new Phaser.Game(config)
 
-scene.init = function() {
-
-};
-
-scene.preload = function() {
-
-    this.load.setBaseURL('./');
-
-    this.load.image('handclosed', 'assets/hand-closed.png');
-    this.load.image('handopen', 'assets/hand-open.png');
-};
-
-scene.create = function() {
-    this.player = this.add.sprite(100, 100, 'handopen')
-    this.player.scale = .5
-};
-
-scene.update = function() {
-    // Is mouse click down?
-        // move player along the x-axis at a rate this.speed pixels
-
-    if (this.input.activePointer.isDown) {
-
-        // this.player = this.add.image(100, 100, 'hand-closed')
-        // hand closed
-
-        this.player.setTexture('handclosed')
-
-    }
-    else {
-        this.player.setTexture('handopen')
-
-        // this.player = this.add.image(100, 100, 'hand-open')
-        // Hand open
-
-    }
-
-
-    this.player.x = this.input.activePointer.x;
-    this.player.y = this.input.activePointer.y;
-};
-
-
-scene.end = function() {
-
-};
+let greifer = new Greifer()
