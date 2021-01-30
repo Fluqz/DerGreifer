@@ -8,11 +8,11 @@ export class Player {
     hitbox
 
     constructor() {
-
-        this.sprite = Greifer.scene.matter.add.sprite(100, 100, 'handopen')
-        
+        this.sprite = Greifer.scene.matter.add.sprite(100, 100, 'handopen', )
         this.sprite.scale = .5
-        this.sprite.setPolygon('40 0 40 20 100 20 100 80 40 80 40 100 0 50')
+        this.sprite.setRectangle(100, 100)
+        this.sprite.setDensity(1)
+        this.sprite.setFrictionAir(.05)
     }
  
     
