@@ -42,12 +42,10 @@ scene.create = function() {
 
 scene.update = function() {
     // Is mouse click down?
-    if (this.) {
         // move player along the x-axis at a rate this.speed pixels
-    this.player.x += this.speed;
-    }
 
-    
+    this.player.x = this.input.activePointer.x;
+    this.player.y = this.input.activePointer.y;
 };
 
 
