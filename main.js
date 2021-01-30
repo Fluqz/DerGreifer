@@ -60,7 +60,7 @@ export class Greifer {
     create() {
 
         // this.matter.world.setBounds(0, 0, window.innerWidth, 100, false)
-        this.matter.world.setBounds(0, 0, window.innerWidth, window.innerHeight, 1, true, true, true, true);
+        this.matter.world.setBounds(0, 0, window.innerWidth, window.innerHeight, 10, true, true, true, true);
 
         this.player = new Player()
 
