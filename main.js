@@ -45,9 +45,16 @@ export class Greifer {
     }
     preload() {
 
+
+
         this.load.image('handclosed', 'assets/hand-closed.png');
         this.load.image('handopen', 'assets/hand-open.png');
         this.load.image('test', 'assets/kackhaufen.png');
+
+        this.load.image('test', 'assets/kackhaufen.png');
+
+        
+        this.load.json('player-shapes', 'assets/hitboxes/player_polygon.json');
     }
 
     create() {

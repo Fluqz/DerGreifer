@@ -7,12 +7,19 @@ export class Player {
     sprite
     hitbox
 
+    shapes
+
     constructor() {
-        this.sprite = Greifer.scene.matter.add.sprite(100, 100, 'handopen', )
-        this.sprite.scale = .5
-        this.sprite.setRectangle(100, 100)
-        this.sprite.setDensity(1)
-        this.sprite.setFrictionAir(.05)
+
+        this.shapes = Greifer.scene.cache.json.get('player-shapes')
+
+        console.log(this.shapes['hand-open'])
+
+        this.sprite = Greifer.scene.matter.add.sprite(50, 50, 'handopen', 'handopen', { shape: this.shapes['hand-open']})
+        
+        // this.sprite.setRectangle(100, 100)
+        // this.sprite.setDensity(1)
+        // this.sprite.setFrictionAir(.05)
     }
  
     
