@@ -46,6 +46,10 @@ scene.update = function() {
 
     this.player.x = this.input.activePointer.x;
     this.player.y = this.input.activePointer.y;
+
+    if (this.input.activePointer.isDown) {
+        console.log(this.player);
+    }
 };
 
 
