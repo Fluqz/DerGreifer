@@ -9,7 +9,7 @@ export class Greifer {
 
     static scene
     config
-    game
+    static game
     player
 
     constructor() {
@@ -30,7 +30,7 @@ export class Greifer {
             scene: Greifer.scene
         }
 
-        this.game = new Phaser.Game(this.config)
+        Greifer.game = new Phaser.Game(this.config)
 
         Greifer.scene.init = this.init
         Greifer.scene.preload = this.preload
