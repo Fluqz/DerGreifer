@@ -64,11 +64,6 @@ export class Greifer {
 
         this.player = new Player()
 
-
-        for (var i = 0; i < 3; i++) {
-
-        }
-
     }
 
     update() {
