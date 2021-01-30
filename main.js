@@ -7,14 +7,14 @@ import { Player } from './player.js'
 
 export class Greifer {
 
-    scene
+    static scene
     config
     game
-    player 
+    player
 
     constructor() {
 
-        this.scene = new Phaser.Scene('game')
+        Greifer.scene = new Phaser.Scene('game')
 
         this.config = {
 
@@ -27,18 +27,16 @@ export class Greifer {
                     gravity: { y: 200 }
                 }
             },
-            scene: this.scene
+            scene: Greifer.scene
         }
 
         this.game = new Phaser.Game(this.config)
 
-        this.scene.init = this.init
-        this.scene.preload = this.preload
-        this.scene.create = this.create
-        this.scene.update = this.update
-        this.scene.end = this.end
-
-        console.log(this.scene)
+        Greifer.scene.init = this.init
+        Greifer.scene.preload = this.preload
+        Greifer.scene.create = this.create
+        Greifer.scene.update = this.update
+        Greifer.scene.end = this.end
     }
 
     init() {
@@ -51,7 +49,7 @@ export class Greifer {
     }
 
     create() {
-        this.player = new Player(this)
+        this.player = new Player()
     }
 
     update() {
