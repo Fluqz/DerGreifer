@@ -1,19 +1,16 @@
+import { Greifer } from "./main.js"
 
 
 
 export class Player {
 
-    scene
-
     sprite
 
-    constructor(scene) {
+    constructor() {
 
-        this.scene = scene
-
-        this.sprite = scene.add.sprite(100, 100, 'handopen')
+        this.sprite = Greifer.scene.matter.add.sprite(100, 100, 'handopen')
         this.sprite.scale = .5
-
+        this.sprite.setRectangle(100, 100)
     }
  
     

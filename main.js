@@ -1,20 +1,20 @@
 
 
-import './node_modules/phaser/dist/phaser-arcade-physics.js'
+import './node_modules/phaser/dist/phaser.js'
 import { Player } from './player.js'
 
 
 
 export class Greifer {
 
-    scene
+    static scene
     config
-    game
-    player 
+    static game
+    player
 
     constructor() {
 
-        this.scene = new Phaser.Scene('game')
+        Greifer.scene = new Phaser.Scene('game')
 
         this.config = {
 
@@ -22,23 +22,22 @@ export class Greifer {
             width: window.innerWidth,
             height: window.innerHeight,
             physics: {
-                default: 'arcade',
-                arcade: {
-                    gravity: { y: 200 }
+                default: 'matter',
+                matter: {
+                    debug: true,
+                    enableSleeping: true
                 }
             },
-            scene: this.scene
+            scene: Greifer.scene
         }
 
-        this.game = new Phaser.Game(this.config)
+        Greifer.game = new Phaser.Game(this.config)
 
-        this.scene.init = this.init
-        this.scene.preload = this.preload
-        this.scene.create = this.create
-        this.scene.update = this.update
-        this.scene.end = this.end
-
-        console.log(this.scene)
+        Greifer.scene.init = this.init
+        Greifer.scene.preload = this.preload
+        Greifer.scene.create = this.create
+        Greifer.scene.update = this.update
+        Greifer.scene.end = this.end
     }
 
     init() {
@@ -48,10 +47,26 @@ export class Greifer {
 
         this.load.image('handclosed', 'assets/hand-closed.png');
         this.load.image('handopen', 'assets/hand-open.png');
+        this.load.image('test', 'assets/hand-open.png');
     }
 
     create() {
-        this.player = new Player(this)
+
+        // this.matter.world.setBounds(0, 0, window.innerWidth, 100, false)
+        this.matter.world.setBounds(0, 0, window.innerWidth, window.innerHeight, 1, true, true, true, true);
+
+        this.player = new Player()
+
+
+        for (var i = 0; i < 3; i++) {
+
+            let test = this.matter.add.image(Phaser.Math.Between(0, window.innerWidth), 0, 'test')
+            test.scale = .2
+            test.setRectangle(100, 100)
+            test.setFriction(.5)
+            test.setBounce(1)
+        }
+
     }
 
     update() {
