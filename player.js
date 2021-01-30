@@ -20,7 +20,13 @@ export class Player {
     move(x, y) {
 
         this.sprite.x = x
-        this.sprite.y = y
+
+
+        // Nur bis halber Bildschirm
+        if (y > window.innerHeight / 2) {
+            this.sprite.y = y
+        }
+
     }
 
 
