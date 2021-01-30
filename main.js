@@ -1,6 +1,6 @@
 
 
-import './node_modules/phaser/dist/phaser-arcade-physics.js'
+import './node_modules/phaser/dist/phaser.js'
 import { Player } from './player.js'
 
 
@@ -22,9 +22,10 @@ export class Greifer {
             width: window.innerWidth,
             height: window.innerHeight,
             physics: {
-                default: 'arcade',
-                arcade: {
-                    gravity: { y: 200 }
+                default: 'matter',
+                matter: {
+                    debug: true,
+                    enableSleeping: true
                 }
             },
             scene: Greifer.scene
@@ -46,10 +47,26 @@ export class Greifer {
 
         this.load.image('handclosed', 'assets/hand-closed.png');
         this.load.image('handopen', 'assets/hand-open.png');
+        this.load.image('test', 'assets/hand-open.png');
     }
 
     create() {
+
+        // this.matter.world.setBounds(0, 0, window.innerWidth, 100, false)
+        this.matter.world.setBounds(0, 0, window.innerWidth, window.innerHeight, 1, true, true, true, true);
+
         this.player = new Player()
+
+
+        for (var i = 0; i < 3; i++) {
+
+            let test = this.matter.add.image(Phaser.Math.Between(0, window.innerWidth), 0, 'test')
+            test.scale = .2
+            test.setRectangle(100, 100)
+            test.setFriction(.5)
+            test.setBounce(1)
+        }
+
     }
 
     update() {
